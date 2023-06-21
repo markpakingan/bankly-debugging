@@ -5,6 +5,9 @@
 
 process.env.NODE_ENV = "test";
 
+// for testing purposes
+const textEncoder = require('text-encoding-utf-8');
+
 const app = require("../app");
 const request = require("supertest");
 const db = require("../db");
@@ -203,3 +206,5 @@ afterEach(async function() {
 afterAll(function() {
   db.end();
 });
+
+// Adding for testing
