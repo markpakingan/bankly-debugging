@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 const ExpressError = require("./helpers/expressError");
 
+// added for testing
+require('text-encoding').TextEncoder;
 
 app.use(express.json());
 
