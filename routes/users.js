@@ -35,7 +35,7 @@ router.get('/', authUser, requireLogin, async function(req, res, next) {
  *
  */
 
-router.get('/:username', authUser, requireLogin, async function(req,res,next) {
+router.get('/:username', authUser, requireLogin,  async function(req,res,next) {
   try {
     let user = await User.get(req.params.username);
     return res.json({ user });
@@ -102,5 +102,14 @@ router.delete('/:username', authUser, requireAdmin, async function(
     return next(err);
   }
 }); // end
+
+
+router.get('/hello', async function(req, res, next) {
+  try {
+    return "Hello World!"
+  } catch (err) {
+    return next(err);
+  }
+});
 
 module.exports = router;

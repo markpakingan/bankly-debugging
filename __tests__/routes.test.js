@@ -16,6 +16,8 @@ const createToken = require("../helpers/createToken");
 const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = require("../config");
 
+const User = require("../models/user")
+
 // tokens for our sample users
 const tokens = {};
 
@@ -107,9 +109,20 @@ describe("GET /users", function() {
     const response = await request(app)
       .get("/users")
       .send({ _token: tokens.u1 });
+      console.log("returned code", { _token: tokens.u1 })
     expect(response.statusCode).toBe(200);
     expect(response.body.users.length).toBe(3);
   });
+
+  // test("should show list of users but not the pw", async ()=>{
+  //   let users = await User.getAll(); 
+  //   expect(users).toBe([
+  //     {"u1", "fn1", "ln1", "email1", "phone1", false},
+  //     {"u2", "fn2", "ln2", "email2", "phone2", false},
+  //     {"u3", "fn3", "ln3", "email3", "phone3", true}
+  //   ]);
+  // })
+
 });
 
 describe("GET /users/[username]", function() {
@@ -207,4 +220,3 @@ afterAll(function() {
   db.end();
 });
 
-// Adding for testing
